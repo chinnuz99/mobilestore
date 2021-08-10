@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+
+{% block body_block%}
+<div>
+    <div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+            <div class="col-4">
+                <form action="" method="post">
+                    {%csrf_token%}
+                    {{form.as_p}}
+
+                </form>
+            </div>
+        </div>
+    </div>
+<h1>Your Brands Are Here</h1>
+    <table class="table">
+        <tr>
+            <th>brand_name</th>
+
+        </tr>
+            {%if brands%}
+              {%for brand in brands%}
+        <tr>
+
+            <td>{{brand.brand_name}}</td>
+
+            <td><a href="{%url 'viewbrand' brand.id%}" class="btn btn-warning">view</a> <a href="{%url 'change' brand.id%}" class="btn btn-primary">edit</a> <a href="{%url 'remove' brand.id%}" class="btn btn-danger">delete</a> </td>
+
+        </tr>
+          {%endfor%}
+        {%else%}
+            <tr>
+                <td colspan="5" class="text-center">
+                   No brands Available
+                </td>
+            </tr>
+        {%endif%}
+    </table>
+</div>
+{%endblock%}

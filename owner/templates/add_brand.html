@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{%extends 'base.html'%}
+
+{% block body_block%}
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-4  fs-4" style="color: blue;">
+            <h3 class="mt-3" style="color: purple;" >ADD YOUR BRAND HERE</h3>
+            <form action="" method="POST">
+                {%csrf_token%}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary">ADD BRAND</button>
+
+
+            </form>
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%if messages%}
+            {%for message in messages%}
+               {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                  <div class="border bg-success text-white">
+                      {{message}}
+                  </div>
+               {%endif%}
+            {% endfor %}
+
+            {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+
+{%endblock%}
