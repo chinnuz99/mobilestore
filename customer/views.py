@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from customer import forms
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,ListView,DetailView
 from django.contrib.auth.models import User
+from owner.models import Mobile
 # Create your views here.
 
 class RegistrationView(TemplateView):
@@ -46,8 +47,17 @@ class SignInView(TemplateView):
                 return render(request, self.template_name, self.context)
 
 
-class CustomerHomeView(TemplateView):
+class CustomerHomeView(ListView):
     template_name = "customer_home.html"
+    model=Mobile
+    context_object_name = "mobiles"
+class ProductDetailView(DetailView):
+    template_name = "productdetail.html"
+    model = Mobile
+    context_object_name = "mobile"
+
+
+
 
 
 
